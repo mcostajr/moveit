@@ -17,5 +17,6 @@ Desenvolvido pela Rocketseat, no evento nwl#04. Com alteraçõe pessoais
 
 
 ## Layout
-
-<img alt="Layout" title"Layout" src="public/layout.png" />
+<p>
+    <img alt="Layout" title"Layout" src="public/layout.png" />
+</p>
