@@ -14,3 +14,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## Projeto
 
 Desenvolvido pela Rocketseat, no evento nwl#04. Com alteraçõe pessoais
+
+
+## Layout
+
+<img alt="Layout" title"Layout" src="public/layout.png" />
