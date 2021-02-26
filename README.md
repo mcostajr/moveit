@@ -11,6 +11,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [React](https://reactjs.org)
 - [TypeScript](https://www.typescriptlang.org/)
 
-### Projeto
+## Projeto
 
 Desenvolvido pela Rocketseat, no evento nwl#04. Com alteraçõe pessoais
