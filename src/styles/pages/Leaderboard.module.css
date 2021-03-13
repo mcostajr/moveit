@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+}
+
+.containerLeaderboard {
+    margin: 2rem 10rem;
+    width: 80vw;
+}
+
+.containerLeaderboard table {
+    margin-top: 10px;
+}
+
+.containerRanking {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.headerRanking {
+    display: flex;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+
+.headerRanking div:first-child {
+    width: 8%;
+}
+
+.headerRanking div:nth-last-child(3) {
+    width: 60%;
+}
+
+.headerRanking > div:nth-last-child(-n+2) {
+    width: 16%;
+}
+
+
+.bodyRanking {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerProfile {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    background: var(--white);
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.containerProfile div {
+    display: flex;
+    align-items: center;
+    padding: 5px 5px;
+    height: 100%;
+}
+
+.containerProfile > div:first-child {
+    display: flex;
+    justify-content: center;
+    width: 8%;
+    border-right: 5px solid #F2F3F5;
+}
+
+.containerProfile > div:nth-last-child(3) {
+    width: 60%;
+}
+
+.containerProfile > div:nth-last-child(3) > div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.containerProfile > div:nth-last-child(-n+2) {
+    width: 16%;
+}
+
+.containerProfile > div:nth-last-child(-n+2) > strong {
+    color: #5965E0;
+}
