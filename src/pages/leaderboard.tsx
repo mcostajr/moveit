@@ -65,7 +65,7 @@ export default function Leaderboard({leaderboardList}: LeaderboardProps) {
 export const getStaticProps: GetStaticProps = async () => {
 
     const { db } = await connectToDatabase();
-    const collection = await db.collection('users')
+    const collection = await db.collection('userUsers')
     .find()
     .sort({level: -1})
     .toArray()

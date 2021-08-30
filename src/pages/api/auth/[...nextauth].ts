@@ -18,7 +18,7 @@ export default NextAuth({
         Account: Adapters.TypeORM.Models.Account,
         Session: Adapters.TypeORM.Models.Session,
         VerificationRequest: Adapters.TypeORM.Models.VerificationRequest,
-        User: Models.User,
+        User: Models.User as any,
        },
     }
   ),

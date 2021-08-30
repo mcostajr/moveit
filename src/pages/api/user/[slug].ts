@@ -13,13 +13,13 @@ const handlerProfile = async (req: NextApiRequest, res: NextApiResponse) => {
 
         switch(method) {
             case 'GET':
-                const collection = await db.collection('users').find( { _id: new ObjectId(slug as string) } ).toArray()
+                const collection = await db.collection('userUsers').find( { _id: new ObjectId(slug as string) } ).toArray()
                 
                 res.status(200).json(collection)
                 break;
                 
             case 'PUT':
-                    const note = await db.collection('users').updateOne(
+                    const note = await db.collection('userUsers').updateOne(
                         { _id: new ObjectId(slug as string) }, 
                         { $set: req.body }
                     )
