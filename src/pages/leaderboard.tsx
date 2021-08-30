@@ -36,7 +36,7 @@ export default function Leaderboard({leaderboardList}: LeaderboardProps) {
                         <div><span>EXPERIÊNCIA</span></div>
                     </div>
                     <div className={styles.bodyRanking}>
-                        {leaderboardList.map((player, idx) => {
+                        {leaderboardList?.map((player, idx) => {
                             return (
                                 <div key={player.name} className={styles.containerProfile}>
                                     <div><span>{idx+1}</span></div>
@@ -64,13 +64,20 @@ export default function Leaderboard({leaderboardList}: LeaderboardProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
 
-    const { data } = await api.get('/api/user')
+    const { db } = await connectToDatabase();
+    const collection = await db.collection('users')
+    .find()
+    .sort({level: -1})
+    .toArray()
+
+
+    const leaderboardList = JSON.parse(JSON.stringify(collection))
 
     return {
       revalidate: 60,
   
       props: {
-        leaderboardList: data.users
+        leaderboardList
       }
     }
 
