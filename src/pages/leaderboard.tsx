@@ -1,7 +1,6 @@
 import { Sidebar } from '../components/Sidebar'
 import styles from '../styles/pages/Leaderboard.module.css'
-import { GetStaticProps } from 'next'
-import { api } from '../services/api'
+import { GetServerSideProps } from 'next'
 import { connectToDatabase } from '../utils/mongodb'
 
 interface LeaderBoard {
@@ -62,7 +61,7 @@ export default function Leaderboard({leaderboardList}: LeaderboardProps) {
     )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
 
     const { db } = await connectToDatabase();
     const collection = await db.collection('userUsers')

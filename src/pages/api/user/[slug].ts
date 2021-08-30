@@ -16,7 +16,7 @@ const handlerProfile = async (req: NextApiRequest, res: NextApiResponse) => {
                 break;
                 
             case 'PUT':
-                    const note = await db.collection('userUsers').update(
+                    const note = await db.collection('userUsers').updateOne(
                         { uuid: slug as string }, 
                         { $set: req.body }
                     )
