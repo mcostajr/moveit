@@ -56,7 +56,7 @@ export function ChallengesProvider({children,...rest}: ChallengesProviderProps) 
         if(isloading)
             return setIsLoading(false);
 
-        api.put(`/api/user/${rest.user.id}`, 
+        api.put(`/api/user/${rest.user.uuid}`, 
             { 
                 level: level, 
                 currentExperience: currentExperience, 

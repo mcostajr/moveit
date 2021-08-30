@@ -1,8 +1,5 @@
-import { ObjectId } from "bson";
 import { NextApiResponse } from "next";
-import { getProviders } from "next-auth/client";
 import { NextApiRequest } from "next-auth/internals/utils";
-import { UserSchema } from "../../../models/User";
 import { connectToDatabase } from "../../../utils/mongodb";
 
 const handlerProfile = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -13,14 +10,14 @@ const handlerProfile = async (req: NextApiRequest, res: NextApiResponse) => {
 
         switch(method) {
             case 'GET':
-                const collection = await db.collection('userUsers').find( { _id: new ObjectId(slug as string) } ).toArray()
+                const collection = await db.collection('userUsers').find( { uuid: slug as string } ).toArray()
                 
                 res.status(200).json(collection)
                 break;
                 
             case 'PUT':
-                    const note = await db.collection('userUsers').updateOne(
-                        { _id: new ObjectId(slug as string) }, 
+                    const note = await db.collection('userUsers').update(
+                        { uuid: slug as string }, 
                         { $set: req.body }
                     )
                     res.status(200).json(note)

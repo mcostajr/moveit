@@ -5,7 +5,7 @@ import { api } from '../services/api'
 import { connectToDatabase } from '../utils/mongodb'
 
 interface LeaderBoard {
-    id: string;
+    uuid: string;
     name: string;
     image: string;
     level: number;
@@ -41,7 +41,7 @@ export default function Leaderboard({leaderboardList}: LeaderboardProps) {
                                 <div key={player.name} className={styles.containerProfile}>
                                     <div><span>{idx+1}</span></div>
                                     <div className={styles.profileContainer}>
-                                        <img src={player.image} alt={player.id}/>
+                                        <img src={player.image} alt={player.uuid}/>
                                         <div>
                                             <strong>{player.name}</strong>
                                             <p>
@@ -70,12 +70,9 @@ export const getStaticProps: GetStaticProps = async () => {
     .sort({level: -1})
     .toArray()
 
-
     const leaderboardList = JSON.parse(JSON.stringify(collection))
 
     return {
-      revalidate: 60,
-  
       props: {
         leaderboardList
       }
