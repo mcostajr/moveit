@@ -6,7 +6,7 @@ const handlerProfile = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const { method } = req
         const { slug } = req.query
-        const { client, db } = await connectToDatabase();
+        const { db } = await connectToDatabase();
 
         switch(method) {
             case 'GET':
@@ -20,7 +20,7 @@ const handlerProfile = async (req: NextApiRequest, res: NextApiResponse) => {
                         { uuid: slug as string }, 
                         { $set: req.body }
                     )
-                    res.status(200).json(note)
+                    res.status(200).json({ message: true })
                 break;
             default:
                 res.status(405).json({ statusCode: status, message: 'Method not found' })
