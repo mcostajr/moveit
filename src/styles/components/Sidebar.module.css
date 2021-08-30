@@ -3,16 +3,16 @@
     flex-direction: column;
     justify-content: space-between;
     background: var(--white);
-    width: 5vw;
+    width: 80px;
     height: 100vh;
 }
 
-.container > a {
+.logo {
     display: flex;
     justify-content: center;
 }
 
-.container > a img {
+.logo {
     margin-top: 20px;
 }
 
@@ -49,4 +49,27 @@
 .navigationButton:hover {
     border-left: 3px solid #5965E0;
     color: #5965E0;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logoutButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: 0;
+    border-radius: 5px;
+    height: 40px;
+    width: 40px;
+    background: rgb(194, 0, 0);
+}
+
+.logoutButton:hover {
+    cursor: pointer;
+    filter: brightness(0.6);
 }

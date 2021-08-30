@@ -1,8 +1,24 @@
-import { Profile } from '../components/Profile'
 import { Sidebar } from '../components/Sidebar'
 import styles from '../styles/pages/Leaderboard.module.css'
+import { GetStaticProps } from 'next'
+import { api } from '../services/api'
+import { connectToDatabase } from '../utils/mongodb'
 
-export default function Leaderboard() {
+interface LeaderBoard {
+    id: string;
+    name: string;
+    image: string;
+    level: number;
+    challengesCompleted: number;
+    currentExperience: number;
+}
+
+interface LeaderboardProps {
+    leaderboardList: LeaderBoard[];
+}
+
+export default function Leaderboard({leaderboardList}: LeaderboardProps) {
+
     return (
         <div className={styles.container}>
 
@@ -20,27 +36,42 @@ export default function Leaderboard() {
                         <div><span>EXPERIÊNCIA</span></div>
                     </div>
                     <div className={styles.bodyRanking}>
-                        <div className={styles.containerProfile}>
-                            <div><span>1</span></div>
-                            <div><Profile/></div>
-                            <div><strong>10</strong>completados</div>
-                            <div><strong>33</strong>xp</div>
-                        </div>
-                        <div className={styles.containerProfile}>
-                            <div><span>2</span></div>
-                            <div><span>João</span></div>
-                            <div><strong>10</strong>completados</div>
-                            <div><strong>22</strong>xp</div>
-                        </div>
-                        <div className={styles.containerProfile}>
-                            <div><span>3</span></div>
-                            <div><span>Luan</span></div>
-                            <div><strong>2</strong>completados</div>
-                            <div><strong>10</strong>xp</div>
-                        </div>
+                        {leaderboardList.map((player, idx) => {
+                            return (
+                                <div key={player.name} className={styles.containerProfile}>
+                                    <div><span>{idx+1}</span></div>
+                                    <div className={styles.profileContainer}>
+                                        <img src={player.image} alt={player.id}/>
+                                        <div>
+                                            <strong>{player.name}</strong>
+                                            <p>
+                                                <img src="icons/level.svg" alt="Level"/>
+                                                Level {player.level}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div><strong>{player.challengesCompleted}</strong>completados</div>
+                                    <div><strong>{player.currentExperience}</strong>xp</div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
         </div>
     )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+
+    const { data } = await api.get('/api/user')
+
+    return {
+      revalidate: 60,
+  
+      props: {
+        leaderboardList: data.users
+      }
+    }
+
 }

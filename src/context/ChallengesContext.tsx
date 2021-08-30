@@ -2,6 +2,7 @@ import { createContext, useState, ReactNode, useContext, useEffect } from 'react
 import Cookies from 'js-cookie';
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
+import { api } from '../services/api';
 
 interface Challenge {
     type: 'body' | 'eye';
@@ -9,7 +10,14 @@ interface Challenge {
     amount: number;
 }
 
+interface User {
+    id: string;
+    name: string;
+    image: string;
+}
+
 interface ChallengeContextData {
+    user: User;
     level: number;
     currentExperience: number;
     challengesCompleted: number;
@@ -24,22 +32,19 @@ interface ChallengeContextData {
 
 interface ChallengesProviderProps {
     children: ReactNode;
-    level: number;
-    currentExperience: number;
-    challengesCompleted: number;
+    user: any;
 }
 
 export const ChallengesContext = createContext({} as ChallengeContextData)
 
-export function ChallengesProvider({
-    children, 
-    ...rest
-}: ChallengesProviderProps) {
-    const [level, setLevel] = useState(rest.level ?? 1);
-    const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
-    const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
+export function ChallengesProvider({children,...rest}: ChallengesProviderProps) {
+    const [user, setUser] = useState(rest.user ?? {});
+    const [level, setLevel] = useState(rest.user.level ?? 1);
+    const [currentExperience, setCurrentExperience] = useState(rest.user.currentExperience ?? 0);
+    const [challengesCompleted, setChallengesCompleted] = useState(rest.user.challengesCompleted ?? 0);
     const [activeChallenge, setActiveChallenge] = useState(null)
     const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
+    const [isloading, setIsLoading] = useState(true)
 
     const experienceToNextLevel = Math.pow((level+1) * 4, 2)
 
@@ -48,9 +53,17 @@ export function ChallengesProvider({
     }, [])
 
     useEffect(() => {
-        Cookies.set('level', String(level))
-        Cookies.set('currentExperience', String(currentExperience))
-        Cookies.set('challengesCompleted', String(challengesCompleted))
+        if(isloading)
+            return setIsLoading(false);
+
+        api.put(`/api/user/${rest.user.id}`, 
+            { 
+                level: level, 
+                currentExperience: currentExperience, 
+                challengesCompleted: challengesCompleted 
+            })
+        .then()
+
     }, [level, currentExperience, challengesCompleted])
 
     function levelUp() {
@@ -103,6 +116,7 @@ export function ChallengesProvider({
     return (
         <ChallengesContext.Provider 
             value={{
+                user,
                 level,
                 currentExperience,
                 experienceToNextLevel,
