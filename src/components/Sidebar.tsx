@@ -3,11 +3,10 @@ import { AiOutlineHome } from 'react-icons/ai';
 import { HiLogout  } from 'react-icons/hi';
 
 import styles from '../styles/components/Sidebar.module.css'
-import { signOut, useSession } from 'next-auth/client';
+import { signOut } from 'next-auth/client';
+import Link from 'next/link';
 
 export function Sidebar() {
-
-    const [session, loading] = useSession()
 
     return (
         <aside className={styles.container}>
@@ -16,12 +15,12 @@ export function Sidebar() {
             </section>
             <section>
                 <nav className={styles.containerNavigation}>
-                    <a href="/" className={styles.navigationButton}>
-                        <AiOutlineHome size={35}/>
-                    </a>
-                    <a href="/leaderboard" className={styles.navigationButton}>
-                        <FaAward size={35}/>
-                    </a>
+                    <Link href="/">
+                        <a className={styles.navigationButton}><AiOutlineHome size={35}/></a>
+                    </Link>
+                    <Link href="/leaderboard">
+                    <a className={styles.navigationButton}><FaAward size={35}/></a>
+                    </Link>
                 </nav>
             </section>
             <section className={styles.logout}>
