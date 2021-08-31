@@ -2,6 +2,7 @@ import { Sidebar } from '../components/Sidebar'
 import styles from '../styles/pages/Leaderboard.module.css'
 import { GetServerSideProps } from 'next'
 import { connectToDatabase } from '../utils/mongodb'
+import Head from 'next/head'
 
 interface LeaderBoard {
     uuid: string;
@@ -20,7 +21,9 @@ export default function Leaderboard({leaderboardList}: LeaderboardProps) {
 
     return (
         <div className={styles.container}>
-
+            <Head>
+                <title>LeaderBoard | move.it</title>
+            </Head>
             <aside>
                 <Sidebar/>
             </aside>

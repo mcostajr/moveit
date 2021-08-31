@@ -13,7 +13,6 @@ import { CountdownProvider } from '../context/CountdownContext';
 
 import styles from '../styles/pages/Home.module.css'
 import { getSession,  } from 'next-auth/client';
-import { api } from '../services/api';
 
 export default function Home({user}) {
     
@@ -65,11 +64,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         }
     }
 
-    const user: any = session.user
+    const user = session.user
 
     return {
         props: {
-            session,
             user
         }
     }
