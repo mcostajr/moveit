@@ -8,9 +8,8 @@
 
 @media (min-width: 700px) {
     .simboloContainer {
-        display: flex;
         width: 60vw;
-        height: 95vh;
+        height: 100vh;
         background-image: url("../../../public/icons/simbolo.svg");
         background-repeat: no-repeat;
         background-size: contain;
@@ -48,28 +47,6 @@
     height: 4.75rem;
     width: 22.5rem;
     margin-bottom: 20px;
-}
-
-.loginContainer > div {
-    display: flex;
-}
-
-.loginContainer > div > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right, #4953B8, #5e66bb);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    height: 80px;
-    width: 340px;
-}
-
-.loginContainer input {
-    background: linear-gradient(to right, #4953B8, #5e66bb);
-    border: 0;
-    outline: 0;
-    height: 40px;
-    width: 300px;
 }
 
 .loginContainer button {

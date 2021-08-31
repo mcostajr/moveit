@@ -24,13 +24,7 @@ export default function App() {
         <img src="./logo-white.svg" alt="logo"/>
         <h1>Bem-vindo</h1>
         <img src="./icons/git.svg" alt="git"/>
-        <div>
-          {!session ? (
-            <button onClick={() => signIn('github')}><FaGithub />Sign in with GitHub</button>
-          ):(
-            <button onClick={() => signOut()}><FaGithub />Sign out with GitHub</button>
-          )}
-        </div>
+        <button onClick={() => signIn('github')}><FaGithub />Sign in with GitHub</button>
       </div>
     </div>
   )

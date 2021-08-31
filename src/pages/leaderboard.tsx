@@ -3,6 +3,7 @@ import styles from '../styles/pages/Leaderboard.module.css'
 import { GetServerSideProps } from 'next'
 import { connectToDatabase } from '../utils/mongodb'
 import Head from 'next/head'
+import { getSession } from 'next-auth/client'
 
 interface LeaderBoard {
     uuid: string;
@@ -20,13 +21,10 @@ interface LeaderboardProps {
 export default function Leaderboard({leaderboardList}: LeaderboardProps) {
 
     return (
-        <div className={styles.container}>
+        <main className={styles.container}>
             <Head>
                 <title>LeaderBoard | move.it</title>
             </Head>
-            <aside>
-                <Sidebar/>
-            </aside>
 
             <div className={styles.containerLeaderboard}>
                 <h1>Leaderboard</h1>
@@ -60,11 +58,22 @@ export default function Leaderboard({leaderboardList}: LeaderboardProps) {
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
+    const session = await getSession(ctx)
+
+    if(!session) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false
+            }
+        }
+    }
 
     const { db } = await connectToDatabase();
     const collection = await db.collection('userUsers')

@@ -17,37 +17,29 @@ import { getSession,  } from 'next-auth/client';
 export default function Home({user}) {
     
     return (
-        <div className={styles.container}>
+        <main className={styles.container}>
             <Head>
                 <title>Inicio | move.it</title>
             </Head>
-            <aside>
-                <Sidebar />
-            </aside>
         
-            <ChallengesProvider
-                user={user}
-            >
+            <ChallengesProvider user={user}>
                 <div className={styles.containerChallenge}>
-                
-
-                <ExperienceBar />
-
-                <CountdownProvider>
-                    <section>
-                    <div>
-                        <Profile/>
-                        <CompletedChallenges />
-                        <Countdown />
-                    </div>
-                    <div>
-                        <ChallengenBox />
-                    </div>
-                    </section>
-                </CountdownProvider>
+                    <ExperienceBar />
+                    <CountdownProvider>
+                        <section>
+                        <div>
+                            <Profile/>
+                            <CompletedChallenges />
+                            <Countdown />
+                        </div>
+                        <div>
+                            <ChallengenBox />
+                        </div>
+                        </section>
+                    </CountdownProvider>
                 </div>
             </ChallengesProvider>
-            </div>
+        </main>
     )
 }
 
