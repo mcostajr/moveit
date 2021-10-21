@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub  } from 'react-icons/fa';
+import { FaGithub, FaFacebookF  } from 'react-icons/fa';
 
 import Head from "next/head";
 import { GetServerSideProps } from 'next';
@@ -23,8 +23,10 @@ export default function App() {
       <div className={styles.loginContainer}>
         <img src="./logo-white.svg" alt="logo"/>
         <h1>Bem-vindo</h1>
-        <img src="./icons/git.svg" alt="git"/>
-        <button onClick={() => signIn('github')}><FaGithub />Sign in with GitHub</button>
+        <div className={styles.buttonsLogin}>
+          <button onClick={() => signIn('github')}><FaGithub /> Sign in with GitHub</button>
+          <button onClick={() => signIn('facebook')}><FaFacebookF /> Sign in with Facebook</button>
+        </div>
       </div>
     </div>
   )
