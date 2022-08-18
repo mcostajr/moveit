@@ -49,13 +49,7 @@
     margin-bottom: 20px;
 }
 
-.buttonsLogin {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.buttonsLogin button {
+.loginContainer button {
     background: #4953B8;
     border: 1px solid rgba(0, 0, 0, 0.06);
     height: 80px;
@@ -63,7 +57,7 @@
     transition: 0.5s;
 }
 
-.buttonsLogin button:hover {
+.loginContainer button:hover {
     background: #4CD62B;
     border: 1px solid rgba(0, 0, 0, 0.06);
 }
